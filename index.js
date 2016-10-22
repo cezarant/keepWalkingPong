@@ -1,17 +1,27 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+var dados = "Nenhum socket ainda"; 
+var net = require('net');
+var http = require("http");
+var server = http.createServer(function(request, response) {
+  response.writeHead(200, {"Content-Type": "text/html"});  
+  response.write("<html>");
+  response.write("<head>");
+  response.write("<title>Hello World Page</title>");
+  response.write("</head>");
+  response.write("<body>");
+  response.write(dados);
+  response.write("</body>");
+  response.write("</html>");
+  response.end();
 });
 
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-});
+net.createServer(function(sock)
+{   		
+	sock.on('data', function(data)
+	{
+		dados += 'colocando socker na lista\n';
+		vr_sockets.push(sock);
+	});	
+}).listen(3000);
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
+server.listen((process.env.PORT || 5000));
+console.log("Server is listening");
