@@ -11,5 +11,5 @@ var server = http.createServer(function(request, response) {
   response.write("</html>");
   response.end();
 });
-server.listen(8080);
+server.listen((process.env.PORT || 5000));
 console.log("Server is listening");
