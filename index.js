@@ -1,4 +1,4 @@
-var server = require('http').createServer(app);
+var server = require('http');
 var io = require('socket.io')(server);
 var port = process.env.PORT || 6000;
 
