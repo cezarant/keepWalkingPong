@@ -6,7 +6,7 @@ var http = require('http');
 var myserver  = http.createServer(function (req,res)
 {
 	res.writeHead(200, {'Content-Type'   : 'text/plain','Access-Control-Allow-Origin' : '*'});
-	req.on('data',function(data)
+	/*req.on('data',function(data)
 	{
 		console.log(data); 		
 	});
@@ -19,10 +19,10 @@ var myserver  = http.createServer(function (req,res)
 	req.on('end', function()
 	{			
 		console.log(dados); 		
-	});
+	});*/
 	res.end(dados); 
 });
-myserver.listen(8081);
+myserver.listen(8080);
 
 net.createServer(function(sock)
 {   		
