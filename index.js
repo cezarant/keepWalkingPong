@@ -1,16 +1,16 @@
 var http = require('http');
-var port = process.env.PORT || 6000;
+var port = process.env.PORT;
 var http = require('http');
 var myserver  = http.createServer(function (req,res)
 {
 	console.log('algo', port);	
 });
-var io = require('socket.io')(myserver);
-
 myserver.listen(port, function () 
 {
   console.log('Server listening at port %d', port);	
 });
+
+var io = require('socket.io')(myserver);
 
 /*app.set('port', (process.env.PORT || 5000));
 
