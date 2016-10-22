@@ -1,9 +1,15 @@
-var server = require('http');
+var http = require('http');
 var io = require('socket.io')(server);
 var port = process.env.PORT || 6000;
+var http = require('http');
+var myserver  = http.createServer(function (req,res)
+{
+	console.log('Server listening at port %d', port);	
+});
 
-server.listen(port, function () {
-  console.log('Server listening at port %d', port);
+myserver.listen(port, function () 
+{
+  console.log('Server listening at port %d', port);	
 });
 
 /*app.set('port', (process.env.PORT || 5000));
