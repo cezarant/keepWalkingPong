@@ -3,7 +3,7 @@ var port = process.env.PORT || 6000;
 var http = require('http');
 var myserver  = http.createServer(function (req,res)
 {
-	console.log('Server listening at port %d', port);	
+	console.log('algo', port);	
 });
 var io = require('socket.io')(myserver);
 
