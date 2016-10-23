@@ -143,20 +143,21 @@ $(function()
     
   $window.keydown(function (event) 
   {
+	subir();  
     // Auto-focus the current input when a key is typed
-    if (!(event.ctrlKey || event.metaKey || event.altKey)) {
+    /*if (!(event.ctrlKey || event.metaKey || event.altKey)) {
       $currentInput.focus();
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-      if (username) {
+      if (username){
         sendMessage();
         socket.emit('stop typing');
         typing = false;
       } else {
         setUsername();
       }
-    }
+    }*/
   });
 
   $btnSubir.on('click',function()
