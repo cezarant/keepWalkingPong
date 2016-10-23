@@ -122,9 +122,9 @@ $(function()
   /** Up and Down */
   /*****************************************************************************************/
   /** Function to Up the bar */
-  function auth()
+  function auth(username)
   {
-	  socket.emit('auth');
+	  socket.emit('auth',username);
   }
 
   function subir()
@@ -158,7 +158,7 @@ $(function()
         sendMessage();
       } else {
         setUsername();
-		socket.emit('auth');
+		socket.emit('auth',username);
       }
     }
   });
