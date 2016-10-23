@@ -27,7 +27,6 @@ $(function()
   // Sets the client's username
   function setUsername () 
   {
-	subir();
     username = cleanInput($usernameInput.val().trim());    
     if (username) 
 	{

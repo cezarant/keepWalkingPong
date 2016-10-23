@@ -26,20 +26,10 @@ io.on('connection', function (socket)
       message: data
     });
   });
-
-  socket.on('teste', function (data)
-  {
-	   var $chatPage = $('.chat.page');
-	   $chatPage.css("background-color","red");	  
-  }); 
-  
+ 
   // when the client emits 'add user', this listens and executes
   socket.on('user', function (username)
-  {
-	 socket.emit('user', username);  
-	  
-	socket.broadcast('user',username);  
-	  
+  {  
     if ((addedUser) || (numUsers === 2)) return;
     // we store the username in the socket session for this client
     socket.username = username;
