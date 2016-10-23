@@ -1,1 +1,139 @@
-!function(){"use strict";function a(a,e){var l=this,o=90,p=o/9;l.game={player1:{score:0,paddle:{top:45,width:1,height:27}},player2:{score:0,paddle:{top:0,width:1,height:27}},ball:{top:50,right:50}};var g=io("https://pongkeepwalking.herokuapp.com/");g.on("subir",function(a){alert(a);}),PongGame.deltaTime=500,PongGame.canvas={width:98.8,height:97.5},PongGame.ball={pos:{x:50,y:50},size:{x:1.25,y:1.25},speed:{x:.01,y:.01}},PongGame.paddle1={width:1,height:10},PongGame.paddle2={width:1,height:10},e(function(){PongGame.UpdateBallPosition(l.game.player1.paddle,l.game.player2.paddle),(PongGame.ball.pos.x<0||PongGame.ball.pos.x>PongGame.canvas.width)&&(PongGame.ball.pos.x<PongGame.canvas.width?(l.game.player1.score+=1,PongGame.ball.pos.x=PongGame.canvas.width,PongGame.ball.pos.y=l.game.player1.paddle.top,PongGame.ball.speed.x>0&&(PongGame.ball.speed.x*=-1)):(l.game.player2.score+=1,PongGame.ball.pos.x=0,PongGame.ball.pos.y=l.game.player2.paddle.top,PongGame.ball.speed.x<0&&(PongGame.ball.speed.x*=-1)),l.game.player2.paddle.top=45),l.game.ball.right=PongGame.ball.pos.x,l.game.ball.top=PongGame.ball.pos.y},100),a.$on("ArrowUp",function(){l.game.player1.paddle.top>0&&(l.game.player1.paddle.top-=p,l.game.player1.paddle.top<0&&(l.game.player1.paddle.top=0),console.log("enviado"))}),a.$on("ArrowDown",function(){l.game.player1.paddle.top<o&&(l.game.player1.paddle.top+=p,l.game.player1.paddle.top+l.game.player1.paddle.height>PongGame.canvas.height&&(l.game.player1.paddle.top=PongGame.canvas.height-l.game.player1.paddle.height+2.5))})}angular.module("app").controller("GameCtrl",a),a.$inject=["$scope","$interval"]}();
+(function() {
+	'use strict';
+
+	angular
+		.module('app')
+		.controller('GameCtrl', GameCtrl);
+
+	GameCtrl.$inject = ['$scope', '$interval'];
+
+	function GameCtrl($scope, $interval) {
+		var ctrl = this;
+		var top_max = 90;
+		var max_movements = top_max / 9;
+
+		ctrl.game = {
+			player1: {
+				score: 0,
+				paddle: {
+					top: 45,
+					width: 1,
+					height: 27
+				}
+			},
+			player2: {
+				score: 0,
+				paddle: {
+					top: 0,
+					width: 1,
+					height: 27
+				}
+			},
+			ball: {
+				top: 50,
+				right: 50
+			}
+		};
+
+		var socket = io('https://pongkeepwalking.herokuapp.com/');
+		socket.on('subir', function (data) {
+			alert(data);
+		});
+
+		PongGame.deltaTime = 500;
+
+		PongGame.canvas = {
+			width: 98.8,
+			height: 97.5
+		};
+
+		PongGame.ball = {
+			pos: {
+				x: 50,
+				y: 50
+			},
+
+			size: {
+				x: 1.25,
+				y: 1.25
+			},
+
+			speed: {
+				x: 0.01,
+				y: 0.01
+			}
+		};
+
+		PongGame.paddle1 = {
+			width: 1,
+			height: 10
+		};
+
+		PongGame.paddle2 = {
+			width: 1,
+			height: 10
+		};
+
+		$interval(function() {
+			PongGame.UpdateBallPosition(ctrl.game.player1.paddle, ctrl.game.player2.paddle);
+
+			if ((PongGame.ball.pos.x < 0) || (PongGame.ball.pos.x > PongGame.canvas.width))
+			{
+				if (PongGame.ball.pos.x < PongGame.canvas.width)
+				{
+					ctrl.game.player1.score += 1;
+
+					PongGame.ball.pos.x = PongGame.canvas.width;
+					PongGame.ball.pos.y = ctrl.game.player1.paddle.top;
+
+					if (PongGame.ball.speed.x > 0)
+						PongGame.ball.speed.x *= -1;
+				}
+				else
+				{
+					ctrl.game.player2.score += 1;
+					PongGame.ball.pos.x = 0;
+					PongGame.ball.pos.y = ctrl.game.player2.paddle.top;
+
+					if (PongGame.ball.speed.x < 0)
+						PongGame.ball.speed.x *= -1;
+				}
+
+				ctrl.game.player2.paddle.top = 45;
+			}
+
+			// top do player2
+			// PongGame.ball.pos.x
+			// PongGame.ball.pos.y
+			// player1.score
+			// player2.score
+
+			ctrl.game.ball.right = PongGame.ball.pos.x;
+			ctrl.game.ball.top = PongGame.ball.pos.y;
+		}, 100);
+
+		$scope.$on('ArrowUp', function(event, args) {
+			if (ctrl.game.player1.paddle.top > 0)
+			{
+				ctrl.game.player1.paddle.top -= max_movements;
+				if (ctrl.game.player1.paddle.top < 0)
+					ctrl.game.player1.paddle.top = 0;
+
+				//socket.emit('subir');
+				console.log('enviado');
+			}
+		});
+
+		$scope.$on('ArrowDown', function(event, args) {
+			if (ctrl.game.player1.paddle.top < top_max)
+			{
+				ctrl.game.player1.paddle.top += max_movements;
+				if ((ctrl.game.player1.paddle.top + ctrl.game.player1.paddle.height) > PongGame.canvas.height)
+					ctrl.game.player1.paddle.top = PongGame.canvas.height - ctrl.game.player1.paddle.height + 2.5;
+
+				//socket.emit('my other event', { my: 'data' });
+			}
+		});
+	}
+
+})();
