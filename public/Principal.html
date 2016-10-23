@@ -15,24 +15,16 @@
 		<button id="btnSubir" type="button" class="btn btn-default">Subir</button>
 		<button id="btnDescer" type="button" class="btn btn-default">Descer</button>
 	  </div>	  
-    </li>
-    <li class="login page">
-      <div class="form">
-        <h3 class="title">Your name:</h3>
-        <input id="txtLogin" class="usernameInput" type="text" maxlength="14" />
-      </div>
-    </li>
+    </li>    
   </ul>
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/principal.js"></script>
   <script>
 		$(document).ready(function() 
-	    {
-			var $loginPage = $('.login.page'); 
+	    {			
 			var $chatPage = $('.chat.page'); 
-			$chatPage.show();	  
-			$loginPage.fadeOut();
+			$chatPage.show();	  			
 		});
   </script> 
 </body>

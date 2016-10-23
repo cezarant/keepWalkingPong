@@ -13,8 +13,7 @@ $(function() {
  
   var $btnSubir = $('#btnSubir');
   var $btnDescer = $('#btnDescer');
-
-  var $loginPage = $('.login.page'); // The login page
+  
   var $chatPage = $('.chat.page'); // The chatroom page
   // Prompt for setting a username
   var username;
@@ -32,22 +31,20 @@ $(function() {
     } else {
       message += "there are " + data.numUsers + " participants";
     }
-    log(message);
+    //log(message);
   }
 
   function ativarMonitoramento()
   {
 	$chatPage.show();	  
-	$loginPage.fadeOut();
+	
   }  
   // Sets the client's username
   function setUsername()
   {
     username = cleanInput($usernameInput.val().trim());    
     if (username) 
-	{
-      $loginPage.fadeOut();      
-      $loginPage.off('click');      
+	{      
       socket.emit('add user', username);
     }
   }
