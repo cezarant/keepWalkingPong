@@ -41,12 +41,11 @@ $(function() {
 	$loginPage.fadeOut();
   }  
   // Sets the client's username
-  function setUsername() {
+  function setUsername(){
     username = cleanInput($usernameInput.val().trim());    
     if (username) 
 	{
-      $loginPage.fadeOut();
-      
+      $loginPage.fadeOut();      
       $loginPage.off('click');      
       socket.emit('add user', username);
     }
@@ -201,10 +200,7 @@ $(function() {
 	descer();  
   });
   
-  $loginPage.click(function() 
-  {
-    $currentInput.focus();
-  });
+  
   
   socket.on('login', function (data)
   {
