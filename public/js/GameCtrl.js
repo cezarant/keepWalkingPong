@@ -78,6 +78,7 @@
 				if (ctrl.game.player1.paddle.top < 0)
 					ctrl.game.player1.paddle.top = 0;
 			}
+			alert('Subir'); 
 		});
 		
 		socket.on('descer', function (data)
