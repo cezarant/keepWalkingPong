@@ -157,8 +157,8 @@ $(function()
       if (username) {
         sendMessage();
       } else {
-        setUsername();
-		socket.emit('auth',username);
+        socket.emit('new message', username);
+		setUsername();		
       }
     }
   });
