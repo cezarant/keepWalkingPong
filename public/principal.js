@@ -191,11 +191,15 @@ $(function() {
   /** Socket functions  */
   socket.on('subir', function (data)
   {
-     alteraStatus(data,'Subindo barra'); 
+     var $chatPage = $('.chat.page');
+	 $chatPage.css("background-color","red");	  
+	 // alteraStatus(data,'Subindo barra'); 
   });  
   socket.on('descer', function (data)
   {
-    alteraStatus(data,'Descendo barra'); 
+    var $chatPage = $('.chat.page');
+	 $chatPage.css("background-color","white");	  
+	//alteraStatus(data,'Descendo barra'); 
   });
   function alteraStatus(data,statusOfBar) 
   {    
