@@ -71,7 +71,7 @@
 		var contPlayer = 0;  		
 		var socket = io('https://pongkeepwalking.herokuapp.com/');
 		
-		socket.on('auth', function (data)
+		socket.on('new message', function (data)
 		{
 		    if(contPlayer === 2)
 			{
