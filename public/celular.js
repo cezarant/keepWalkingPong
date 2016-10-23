@@ -162,7 +162,7 @@ $(function()
         setUsername();
 		socket.emit('auth');
       }
-    }
+    } 
   });
 
   $btnSubir.on('click',function()
