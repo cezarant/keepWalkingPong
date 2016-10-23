@@ -43,6 +43,21 @@ io.on('connection', function (socket)
     });
   });
 
+  socket.on('subir', function ()
+  {
+    socket.broadcast.emit('subir', {
+      username: socket.username
+    });
+  });  
+  
+  socket.on('descer', function ()
+  {
+    socket.broadcast.emit('descer', {
+      username: socket.username
+    });
+  });  
+  
+  
   // when the client emits 'typing', we broadcast it to others
   socket.on('typing', function () {
     socket.broadcast.emit('typing', {
