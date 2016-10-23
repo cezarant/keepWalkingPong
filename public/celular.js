@@ -1,40 +1,32 @@
-$(function() {
-  var FADE_TIME = 150; // ms  
-  var COLORS = [
-    '#e21400', '#91580f', '#f8a700', '#f78b00',
-    '#58dc00', '#287b00', '#a8f07a', '#4ae8c4',
-    '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
-  ];
-
-  // Initialize variables
+$(function()
+{
+  var FADE_TIME = 150;   
   var $window = $(window);
-  var $usernameInput = $('#txtLogin'); // Input for username 
+  var $usernameInput = $('#txtLogin'); 
   var $btnSubir = $('#btnSubir');
   var $btnDescer = $('#btnDescer');
-
-  var $loginPage = $('.login.page'); // The login page
-  var $chatPage = $('.chat.page'); // The chatroom page
-  // Prompt for setting a username
+  var $loginPage = $('.login.page'); 
+  var $chatPage = $('.chat.page'); 
   var username;
   var connected = false;
   var typing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
-
   var socket = io();
 
-  function addParticipantsMessage (data) {
+  function addParticipantsMessage (data)
+  {
     var message = '';
-    if (data.numUsers === 1) {
+    if (data.numUsers === 1){
       message += "there's 1 participant";
     } else {
       message += "there are " + data.numUsers + " participants";
     }
     log(message);
   }
-
   // Sets the client's username
-  function setUsername () {
+  function setUsername () 
+  {
     username = cleanInput($usernameInput.val().trim());    
     if (username) 
 	{
@@ -78,7 +70,7 @@ $(function() {
 
     var $usernameDiv = $('<span class="username"/>')
       .text(data.username)
-      .css('color', getUsernameColor(data.username));
+      .css('color', '#000000');
     var $messageBodyDiv = $('<span class="messageBody">')
       .text(data.message);
 
@@ -148,18 +140,7 @@ $(function() {
       return $(this).data('username') === data.username;
     });
   }  
-  function getUsernameColor (username) 
-  {
-    // Compute hash code
-    var hash = 7;
-    for (var i = 0; i < username.length; i++) {
-       hash = username.charCodeAt(i) + (hash << 5) - hash;
-    }
-    // Calculate color
-    var index = Math.abs(hash % COLORS.length);
-    return COLORS[index];
-  }
-  
+    
   $window.keydown(function (event) 
   {
     // Auto-focus the current input when a key is typed
@@ -211,13 +192,14 @@ $(function() {
   });
 
   // Whenever the server emits 'user joined', log it in the chat body
-  socket.on('user joined', function (data) {
+  socket.on('user joined', function (data)
+  {
     log(data.username + ' joined');
     addParticipantsMessage(data);
   });
-
   // Whenever the server emits 'user left', log it in the chat body
-  socket.on('user left', function (data) {
+  socket.on('user left', function (data) 
+  {
     log(data.username + ' left');
     addParticipantsMessage(data);
     removeChatTyping(data);
@@ -227,7 +209,8 @@ $(function() {
   socket.on('subir', function (data)
   {
      alteraStatus(data,'Subindo barra'); 
-  });  
+  });
+  
   socket.on('descer', function (data)
   {
     alteraStatus(data,'Descendo barra'); 
@@ -236,22 +219,5 @@ $(function() {
   {    
     data.message = statusOfBar;
     addChatMessage(data);
-  }
-  // Removes the visual chat typing message
-  function mostraDescendo(data) 
-  {
-    getTypingMessages(data).fadeOut(function () {
-      $(this).remove();
-    });
   }  
-  /****************************************************************/
-  
-  socket.on('typing', function (data)
-  {
-    addChatTyping(data);
-  });
-  
-  socket.on('stop typing', function (data) {
-    removeChatTyping(data);
-  });
 });
