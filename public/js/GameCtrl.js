@@ -75,7 +75,7 @@
 		
 		socket.on('new message', function (data)
 		{
-		    if(contPlayer === 2)
+		    if(contPlayer === 1)
 			{
 				player2 = data.message; 
 				gameAuth = true; 				
