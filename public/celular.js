@@ -124,13 +124,13 @@ $(function()
   /** Function to Up the bar */
   function subir()
   {	
-	if (connected)    
+	//if (connected)    
         socket.emit('subir');
   }
   /** Function to down the bar */
   function descer()
   {
-	 if (connected) 	        
+	 //if (connected) 	        
         socket.emit('descer');
   }  
   /*****************************************************************************************/    
