@@ -12,6 +12,8 @@ server.listen(port, function () {
 app.use(express.static(__dirname + '/public'));
 var numUsers = 0;
 
+
+
 io.on('connection', function (socket) 
 {
   var addedUser = false;
@@ -25,6 +27,12 @@ io.on('connection', function (socket)
     });
   });
 
+  socket.on('teste', function (data))
+  {
+	   var $chatPage = $('.chat.page');
+	   $chatPage.css("background-color","red");	  
+  } 
+  
   // when the client emits 'add user', this listens and executes
   socket.on('add user', function (username)
   {
