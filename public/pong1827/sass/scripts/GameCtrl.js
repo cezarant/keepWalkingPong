@@ -35,10 +35,11 @@
 			}
 		};
 
-		var socket = io('https://pongkeepwalking.herokuapp.com/');
-		socket.on('subir', function (data) {
-			console.log(data);
-		});
+		//var socket = io('https://pongkeepwalking.herokuapp.com/');
+		//var socket = io('http://localhost:8001/');
+		//socket.on('message', function (data) {
+		//	console.log(data);
+		//});
 
 		PongGame.deltaTime = 500;
 
