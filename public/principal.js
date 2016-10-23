@@ -1,5 +1,19 @@
 $(function() {
-  var FADE_TIME = 150; // ms      
+  socket.on('login', function (data)
+  {
+    alert('Chegou usuário'); 
+	//connected = true;
+    // Display the welcome message
+    /*var message = "Welcome to Socket.IO Chat – ";
+    log(message, {
+      prepend: true
+    });
+    addParticipantsMessage(data);*/
+  });	
+}); 
+	
+	
+  /*var FADE_TIME = 150; // ms      
   var $window = $(window);  
   var $messages = $('.messages');   
   var $chatPage = $('.chat.page');   
@@ -134,75 +148,4 @@ $(function() {
   function cleanInput (input)
   {
     return $('<div/>').text(input).text();
-  }
-  /** Up and Down */
-  /*****************************************************************************************/
-  /** Function to Up the bar */
-  function subir()
-  {	
-	if (connected)    
-        socket.emit('subir');
-  }
-  /** Function to down the bar */
-  function descer()
-  {
-	 if (connected) 	        
-        socket.emit('descer');
   }  
-  /*****************************************************************************************/    
-  function getTypingMessages (data) 
-  {
-    return $('.typing.message').filter(function (i) {
-      return $(this).data('username') === data.username;
-    });
-  }    
-   
-  socket.on('login', function (data)
-  {
-    alert('Chegou usuário'); 
-	connected = true;
-    // Display the welcome message
-    /*var message = "Welcome to Socket.IO Chat – ";
-    log(message, {
-      prepend: true
-    });
-    addParticipantsMessage(data);*/
-  });
-
-  // Whenever the server emits 'new message', update the chat body
-  socket.on('new message', function (data)
-  {
-    addChatMessage(data);
-  });
-
-  // Whenever the server emits 'user joined', log it in the chat body
-  socket.on('user joined', function (data)
-  {    
-    addParticipantsMessage(data);
-  });
-
-  // Whenever the server emits 'user left', log it in the chat body
-  socket.on('user left', function (data) {
-    log(data.username + ' left');
-    addParticipantsMessage(data);
-    removeChatTyping(data);
-	gameAuth(false); 
-  });
-  /****************************************************************/
-  /** Socket functions  */
-  socket.on('subir', function (data)
-  {
-     alert('Subir!'); 
-	 // alteraStatus(data,'Subindo barra'); 
-  });  
-  socket.on('descer', function (data)
-  {
-	  alert('Descer!');     
-	//alteraStatus(data,'Descendo barra'); 
-  });
-  function alteraStatus(data,statusOfBar) 
-  {    
-    data.message = statusOfBar;
-    addChatMessage(data);
-  }      
-});
