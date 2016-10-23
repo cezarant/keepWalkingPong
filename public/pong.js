@@ -43,7 +43,7 @@ $(function() {
       $loginPage.fadeOut();
       $chatPage.show();
       $loginPage.off('click');      
-      socket.emit('add user', username);
+      socket.emit('user', username);
     }
   }
 
