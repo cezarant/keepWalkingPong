@@ -11,7 +11,7 @@ $(function() {
   var $window = $(window);
   var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
-  var $inputMessage = $('.inputMessage'); // Input message input box
+ 
   var $btnSubir = $('#btnSubir');
   var $btnDescer = $('#btnDescer');
 
@@ -46,7 +46,7 @@ $(function() {
       $loginPage.fadeOut();
       $chatPage.show();
       $loginPage.off('click');
-      $currentInput = $inputMessage.focus();
+      
 
       // Tell the server your username
       socket.emit('add user', username);
@@ -55,12 +55,12 @@ $(function() {
 
   // Sends a chat message
   function sendMessage () {
-    var message = $inputMessage.val();
+    var message = 'Teste';
     // Prevent markup from being injected into the message
     message = cleanInput(message);
     // if there is a non-empty message and a socket connection
-    if (message && connected) {
-      $inputMessage.val('');
+    if (message && connected)
+	{      
       addChatMessage({
         username: username,
         message: message
@@ -154,8 +154,7 @@ $(function() {
   /*****************************************************************************************/
   /** Function to Up the bar */
   function subir()
-  {
-	alert('Estou aqui'); 
+  {	
 	if (connected)    
         socket.emit('typing');
   }
@@ -234,26 +233,12 @@ $(function() {
 	descer();  
   });
   
-  $inputMessage.on('input', function() {
-    updateTyping();
-  });
-
-  // Click events
-
-  // Focus input when clicking anywhere on login page
   $loginPage.click(function () {
     $currentInput.focus();
   });
-
-  // Focus input when clicking on the message input's border
-  $inputMessage.click(function () {
-    $inputMessage.focus();
-  });
-
-  // Socket events
-
-  // Whenever the server emits 'login', log the login message
-  socket.on('login', function (data) {
+  
+  socket.on('login', function (data)
+  {
     connected = true;
     // Display the welcome message
     var message = "Welcome to Socket.IO Chat – ";
@@ -264,7 +249,8 @@ $(function() {
   });
 
   // Whenever the server emits 'new message', update the chat body
-  socket.on('new message', function (data) {
+  socket.on('new message', function (data)
+  {
     addChatMessage(data);
   });
 
