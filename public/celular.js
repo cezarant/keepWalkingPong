@@ -130,13 +130,13 @@ $(function()
   function subir()
   {	
 	//if (connected)    
-        socket.emit('subir');
+        socket.emit('subir',username);
   }
   /** Function to down the bar */
   function descer()
   {
 	 //if (connected) 	        
-        socket.emit('descer');
+        socket.emit('descer',username);
   }  
   /*****************************************************************************************/    
   function getTypingMessages (data) 

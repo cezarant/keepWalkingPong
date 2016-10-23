@@ -68,6 +68,8 @@
 		};
 
 		var gameAuth = false;
+		var player1 = ""; 
+		var player2 = ""; 
 		var contPlayer = 0;  		
 		var socket = io('https://pongkeepwalking.herokuapp.com/');
 		
@@ -75,30 +77,52 @@
 		{
 		    if(contPlayer === 2)
 			{
+				player2 = data.message; 
 				gameAuth = true; 				
 			}else{
+				player1 = data.message;  
 				contPlayer++;				
 			}  			
 		});
 		
 		socket.on('subir', function (data)
 		{
-		    if (ctrl.game.player1.paddle.top > 0)
-			{
-				ctrl.game.player1.paddle.top -= max_movements;
-				if (ctrl.game.player1.paddle.top < 0)
-					ctrl.game.player1.paddle.top = 0;
+			if(data.username === player1)
+			{ 
+				if (ctrl.game.player1.paddle.top > 0)
+				{
+					ctrl.game.player1.paddle.top -= max_movements;
+					if (ctrl.game.player1.paddle.top < 0)
+						ctrl.game.player1.paddle.top = 0;
+				}
+			}else{ 
+				if (ctrl.game.player2.paddle.top > 0)
+				{
+					ctrl.game.player2.paddle.top -= max_movements;
+					if (ctrl.game.player2.paddle.top < 0)
+						ctrl.game.player2.paddle.top = 0;
+				}		
 			}			
 		});
 		
 		socket.on('descer', function (data)
 		{
-		    if (ctrl.game.player1.paddle.top < top_max)
-			{
-				ctrl.game.player1.paddle.top += max_movements;
-				if ((ctrl.game.player1.paddle.top + ctrl.game.player1.paddle.height) > PongGame.canvas.height)
-					ctrl.game.player1.paddle.top = PongGame.canvas.height - ctrl.game.player1.paddle.height + 2.5;				
-			}
+		    if(data.username === player1)
+			{			
+				if (ctrl.game.player1.paddle.top < top_max)
+				{
+					ctrl.game.player1.paddle.top += max_movements;
+					if ((ctrl.game.player1.paddle.top + ctrl.game.player1.paddle.height) > PongGame.canvas.height)
+						ctrl.game.player1.paddle.top = PongGame.canvas.height - ctrl.game.player1.paddle.height + 2.5;				
+				}
+			}else{
+				if (ctrl.game.player2.paddle.top < top_max)
+				{
+					ctrl.game.player2.paddle.top += max_movements;
+					if ((ctrl.game.player2.paddle.top + ctrl.game.player2.paddle.height) > PongGame.canvas.height)
+						ctrl.game.player2.paddle.top = PongGame.canvas.height - ctrl.game.player2.paddle.height + 2.5;				
+				}				
+			} 	
 		});
 			
 		
