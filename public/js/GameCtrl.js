@@ -76,7 +76,7 @@
 		};
 
 		var socket = io('https://pongkeepwalking.herokuapp.com/');
-		socket.on('login', function (data)
+		socket.on('subir', function (data)
 		{
 		    alert('Usuário conectado'); 
 		});
