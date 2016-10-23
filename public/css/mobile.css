@@ -1,0 +1,52 @@
+body {
+	background-color: #000;
+	color: #fff;
+}
+
+div.navbar-header {
+	text-align: center;
+}
+
+div.navbar-header a:link,
+div.navbar-header a:active,
+div.navbar-header a:hover,
+div.navbar-header a:visited {
+	text-decoration: none;
+	color: #fff;
+	font-size: 30px;
+	text-transform: uppercase;
+	margin: 10px;
+	display: block;
+	line-height: initial;
+	height: 90px;
+}
+
+@media(min-width: 390px) {
+	div.navbar-header a:link,
+	div.navbar-header a:active,
+	div.navbar-header a:hover,
+	div.navbar-header a:visited {
+		height: 50px;
+	}
+}
+
+ul.pages {
+	padding: 130px 0 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+@media(min-width: 390px) {
+	ul.pages {
+		padding: 90px 0 0;
+	}
+}
+
+li.chat.page button {
+	display: block;
+	margin: 0 auto 20px;
+}
+
+li.chat.page button .glyphicon {
+	font-size: 5vw;
+}

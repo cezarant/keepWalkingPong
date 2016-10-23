@@ -67,8 +67,7 @@
 			height: 10
 		};
 
-		var numUsers = 0;
-		var gameAuth = false;  
+		  
 		var socket = io('https://pongkeepwalking.herokuapp.com/');
 		socket.on('subir', function (data)
 		{
@@ -77,8 +76,7 @@
 				ctrl.game.player1.paddle.top -= max_movements;
 				if (ctrl.game.player1.paddle.top < 0)
 					ctrl.game.player1.paddle.top = 0;
-			}
-			alert('Subir'); 
+			}			
 		});
 		
 		socket.on('descer', function (data)
@@ -90,37 +88,11 @@
 					ctrl.game.player1.paddle.top = PongGame.canvas.height - ctrl.game.player1.paddle.height + 2.5;				
 			}
 		});
-		
-		socket.on('user', function (username)
-		{
-			if ((addedUser) || (numUsers === 2)) return;
-			// we store the username in the socket session for this client
-			socket.username = username;
-			++numUsers;			 
-			if(numUsers === 2)
-				gameAuth = true; 	
 			
-			alert(numUsers); 
-			 
-			//addedUser = true;
-			/*socket.emit('login', 
-			{
-			  numUsers: numUsers
-			});
-			// echo globally (all clients) that a person has connected
-			socket.broadcast.emit('user joined', 
-			{
-			  username: socket.username,
-			  numUsers: numUsers
-			});*/
-		});
-		
-		
 		
 		$interval(function()
 		{
-			if(gameAuth)
-			{ 
+			 
 			
 				PongGame.UpdateBallPosition(ctrl.game.player1.paddle, ctrl.game.player2.paddle);
 
@@ -155,7 +127,7 @@
 				// player2.score
 				ctrl.game.ball.right = PongGame.ball.pos.x;
 				ctrl.game.ball.top = PongGame.ball.pos.y;
-			}
+			
 		}, 100);
 
 		$scope.$on('ArrowUp', function(event, args) {
