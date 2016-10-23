@@ -56,21 +56,7 @@ io.on('connection', function (socket)
       username: socket.username
     });
   });  
-  
-  
-  // when the client emits 'typing', we broadcast it to others
-  socket.on('typing', function () {
-    socket.broadcast.emit('typing', {
-      username: socket.username
-    });
-  });
-
-  // when the client emits 'stop typing', we broadcast it to others
-  socket.on('stop typing', function () {
-    socket.broadcast.emit('stop typing', {
-      username: socket.username
-    });
-  });
+    
 
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
