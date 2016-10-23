@@ -22,6 +22,14 @@ $(function() {
     }
     log(message);
   }
+  
+  socket.on('teste', function (data)
+  {
+	   var $chatPage = $('.chat.page');
+	   $chatPage.css("background-color","red");	  
+  });
+  
+  
   // If the game is Auth for Start
   function gameAuth(auth)
   {
