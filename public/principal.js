@@ -38,6 +38,7 @@ $(function() {
   function ativarMonitoramento()
   {
 	$chatPage.show();	  
+	$loginPage.fadeOut();
   }  
   // Sets the client's username
   function setUsername() {
