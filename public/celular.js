@@ -12,7 +12,7 @@ $(function()
   var typing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
-  var socket = io('https://pongkeepwalking.herokuapp.com/');
+  var socket = io();
 
   function addParticipantsMessage (data)
   {
@@ -27,13 +27,14 @@ $(function()
   // Sets the client's username
   function setUsername () 
   {
+	subir();
     username = cleanInput($usernameInput.val().trim());    
     if (username) 
 	{
       $loginPage.fadeOut();
       $chatPage.show();
       $loginPage.off('click');      
-      socket.emit('user', username);
+      socket.emit('add user', username);
     }
   }
 
@@ -143,14 +144,13 @@ $(function()
     
   $window.keydown(function (event) 
   {
-	subir();  
     // Auto-focus the current input when a key is typed
     if (!(event.ctrlKey || event.metaKey || event.altKey)) {
       $currentInput.focus();
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-      if (username){
+      if (username) {
         sendMessage();
         socket.emit('stop typing');
         typing = false;
