@@ -8,7 +8,7 @@ $(function() {
 
   // Initialize variables
   var $window = $(window);
-  var $usernameInput = $('.usernameInput'); // Input for username
+  var $usernameInput = $('#txtLogin'); // Input for username
   var $messages = $('.messages'); // Messages area
  
   var $btnSubir = $('#btnSubir');
