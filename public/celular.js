@@ -154,7 +154,7 @@ $(function()
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13){
-		username = $usernameInput.text(); 
+		username = $usernameInput.val(); 
       if (username){
         sendMessage();
       } else{
