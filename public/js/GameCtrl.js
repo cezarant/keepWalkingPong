@@ -67,8 +67,20 @@
 			height: 10
 		};
 
-		  
+		var gameAuth = false;
+		var contPlayer = 0;  		
 		var socket = io('https://pongkeepwalking.herokuapp.com/');
+		
+		socket.on('auth', function (data)
+		{
+		    if(contPlayer === 2)
+			{
+				gameAuth = true; 				
+			}else{
+				contPlayer++;				
+			}  			
+		});
+		
 		socket.on('subir', function (data)
 		{
 		    if (ctrl.game.player1.paddle.top > 0)
@@ -91,9 +103,9 @@
 			
 		
 		$interval(function()
-		{
-			 
-			
+		{			 
+			if(gameAuth)
+			{ 
 				PongGame.UpdateBallPosition(ctrl.game.player1.paddle, ctrl.game.player2.paddle);
 
 				if ((PongGame.ball.pos.x < 0) || (PongGame.ball.pos.x > PongGame.canvas.width))
@@ -127,7 +139,7 @@
 				// player2.score
 				ctrl.game.ball.right = PongGame.ball.pos.x;
 				ctrl.game.ball.top = PongGame.ball.pos.y;
-			
+			}
 		}, 100);
 
 		$scope.$on('ArrowUp', function(event, args) {

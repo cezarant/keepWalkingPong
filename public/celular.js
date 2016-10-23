@@ -122,6 +122,11 @@ $(function()
   /** Up and Down */
   /*****************************************************************************************/
   /** Function to Up the bar */
+  function auth()
+  {
+	  socket.emit('auth');
+  }
+
   function subir()
   {	
 	//if (connected)    
@@ -155,6 +160,7 @@ $(function()
         typing = false;
       } else {
         setUsername();
+		socket.emit('auth');
       }
     }
   });
