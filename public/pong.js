@@ -12,6 +12,8 @@ $(function() {
   var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
+  var $btnSubir = $('#btnSubir');
+  var $btnDescer = $('#btnDescer');
 
   var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
@@ -148,7 +150,33 @@ $(function() {
   function cleanInput (input) {
     return $('<div/>').text(input).text();
   }
-
+  /** Up and Down */
+  /*****************************************************************************************/
+  /** Function to Up the bar */
+  function subir()
+  {
+	 if (connected) 
+	 {
+        if (!typing) 
+		{
+            typing = true;
+            socket.emit('typing');
+        }     
+     } 	  
+  }
+  /** Function to down the bar */
+  function descer()
+  {
+	 if (connected) 
+	 {
+        if (!typing) 
+		{
+            typing = true;
+            socket.emit('stop typing');
+        }     
+     } 	  
+  }  
+  /*****************************************************************************************/  
   // Updates the typing event
   function updateTyping () {
     if (connected) {
@@ -207,6 +235,16 @@ $(function() {
     }
   });
 
+  $btnSubir.on('click',function()
+  {
+	subir();  
+  });
+  
+  $btnDescer.on('click',function()
+  {
+	descer();  
+  });
+  
   $inputMessage.on('input', function() {
     updateTyping();
   });
