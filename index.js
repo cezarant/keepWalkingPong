@@ -43,11 +43,13 @@ io.on('connection', function (socket)
     });
   });
 
-  socket.on('subir', function ()
+  socket.on('subir', function (data)
   {
-    socket.broadcast.emit('subir', {
-      username: socket.username
-    });
+    socket.broadcast.emit('subir',      
+	{
+      username: socket.username,
+      message: data
+    });  
   });
 
   socket.on('auth', function ()
@@ -60,8 +62,10 @@ io.on('connection', function (socket)
   
   socket.on('descer', function ()
   {
-    socket.broadcast.emit('descer', {
-      username: socket.username
+    socket.broadcast.emit('descer',      
+	{
+      username: socket.username,
+      message: data
     });
   });  
     
