@@ -155,26 +155,15 @@ $(function() {
   /** Function to Up the bar */
   function subir()
   {
-	 if (connected) 
-	 {
-        if (!typing) 
-		{
-            typing = true;
-            socket.emit('typing');
-        }     
-     } 	  
+	alert('Estou aqui'); 
+	if (connected)    
+        socket.emit('typing');
   }
   /** Function to down the bar */
   function descer()
   {
-	 if (connected) 
-	 {
-        if (!typing) 
-		{
-            typing = true;
-            socket.emit('stop typing');
-        }     
-     } 	  
+	 if (connected) 	        
+        socket.emit('stop typing');
   }  
   /*****************************************************************************************/  
   // Updates the typing event
