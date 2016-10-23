@@ -1,4 +1,4 @@
-
+  var socket = io();
   socket.on('login', function (data)
   {
     alert('Chegou usuário'); 
