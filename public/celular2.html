@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">            
-    <title>Pong - Keep Walkiing</title>    
+    <title>Pong - Keep Walkiing</title>
+    <link rel="stylesheet" href="style.css">    
     <link href="css/bootstrap.min.css" rel="stylesheet">    
     <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">    
     <link href="css/jumbotron.css" rel="stylesheet">    
@@ -27,7 +28,23 @@
     
     <div class="container">
       <!-- Example row of columns -->
-      <div class="row">                
+      <div class="row">              
+		<ul class="pages">
+			<li class="chat page">
+			  <div class="chatArea">
+				<ul class="messages"></ul>
+			  </div>
+			  <input class="inputMessage" placeholder="Type here..."/>
+			  <input id="btnSubir" type="button" value="Subir" />
+			  <input id="btnDescer" type="button" value="Descer" />
+			</li>
+			<li class="login page">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">Name:</span>
+					<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				</div>
+			</li>
+		</ul>		  
       </div>      
     </div> <!-- /container -->
     <!-- Bootstrap core JavaScript
