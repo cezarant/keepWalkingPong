@@ -75,7 +75,7 @@
 			height: 10
 		};
 
-		var socket = io();
+		var socket = io('https://pongkeepwalking.herokuapp.com/');
 		socket.on('login', function (data)
 		{
 		    alert('Usuário conectado'); 
