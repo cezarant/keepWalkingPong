@@ -1,0 +1,1 @@
+!function(){"use strict";function o(o){function c(c){switch(c.code){case"ArrowUp":case"ArrowDown":o.$broadcast(c.code)}}var r=this;r.keydown=c}angular.module("app").controller("BodyCtrl",o),o.$inject=["$rootScope"]}();

@@ -25,8 +25,8 @@ $(function() {
   
   socket.on('teste', function (data)
   {
-	   var $chatPage = $('.chat.page');
-	   $chatPage.css("background-color","red");	  
+	var $chatPage = $('.chat.page');
+	$chatPage.css("background-color","red");	  
   });
   
   
