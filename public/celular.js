@@ -156,8 +156,7 @@ $(function()
     if (event.which === 13)
 	{
 		username = $usernameInput.val();       
-		setUsername();		
-      }
+		setUsername();		      
     }
   });
 
