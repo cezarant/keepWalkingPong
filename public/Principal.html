@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pong - Keep Walking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <ul class="pages">
+    <li class="chat page">
+      <div class="chatArea">
+        <ul class="messages"></ul>
+      </div>
+      <div class="btn-group-vertical" role="group" aria-label="...">
+		<button id="btnSubir" type="button" class="btn btn-default">Subir</button>
+		<button id="btnDescer" type="button" class="btn btn-default">Descer</button>
+	  </div>	  
+    </li>
+    <li class="login page">
+      <div class="form">
+        <h3 class="title">Your name:</h3>
+        <input id="txtLogin" class="usernameInput" type="text" maxlength="14" />
+      </div>
+    </li>
+  </ul>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/principal.js"></script>
+  <script>
+		$( document ).ready(function() 
+	    {
+			ativarMonitoramento()
+		});
+  </script>		
+</body>
+</html>
