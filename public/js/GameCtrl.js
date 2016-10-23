@@ -78,7 +78,15 @@
 		var socket = io('https://pongkeepwalking.herokuapp.com/');
 		socket.on('subir', function (data)
 		{
-		    alert('Usuário conectado'); 
+		    if (ctrl.game.player1.paddle.top > 0)
+			{
+				ctrl.game.player1.paddle.top -= max_movements;
+				if (ctrl.game.player1.paddle.top < 0)
+					ctrl.game.player1.paddle.top = 0;
+
+				//socket.emit('subir');
+				console.log('enviado');
+			}
 		});
 		
 		
