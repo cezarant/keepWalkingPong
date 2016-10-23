@@ -7,6 +7,7 @@ $(function() {
   var connected = false;
   var typing = false;
   var lastTypingTime;  
+  var bGameAuth = false;  
   var socket = io();
  
   function addParticipantsMessage (data)
@@ -14,15 +15,25 @@ $(function() {
     var message = '';
     if (data.numUsers === 1)
 	{
-      message += "there's 1 participant";
+      message += "wait other participant";
     } else {
-      message += "there are " + data.numUsers + " participants";
+      gameAuth(true); 
+	  message += "Game Start!";
     }
-    //log(message);
+    log(message);
   }
+  // If the game is Auth for Start
+  function gameAuth(auth)
+  {
+	  bGameAuth = auth; 
+	  if(auth)
+		$chatPage.css("background-color","yellow");	
+	  else 	
+		$chatPage.css("background-color","white");	
+  }  
   function ativarMonitoramento()
   {
-	$chatPage.show();	  	
+	$chatPage.show();	
   }  
   
   function sendMessage()
@@ -48,27 +59,30 @@ $(function() {
   // Adds the visual chat message to the message list
   function addChatMessage (data, options)
   {
-    // Don't fade the message in if there is an 'X was typing'
-    var $typingMessages = getTypingMessages(data);
-    options = options || {};
-    if ($typingMessages.length !== 0) {
-      options.fade = false;
-      $typingMessages.remove();
-    }
+	if(bGameAuth)
+	{   	  
+		// Don't fade the message in if there is an 'X was typing'
+		var $typingMessages = getTypingMessages(data);
+		options = options || {};
+		if ($typingMessages.length !== 0) {
+		  options.fade = false;
+		  $typingMessages.remove();
+		}
 
-    var $usernameDiv = $('<span class="username"/>')
-      .text(data.username)
-      .css('color', '#000000');
-    var $messageBodyDiv = $('<span class="messageBody">')
-      .text(data.message);
+		var $usernameDiv = $('<span class="username"/>')
+		  .text(data.username)
+		  .css('color', '#000000');
+		var $messageBodyDiv = $('<span class="messageBody">')
+		  .text(data.message);
 
-    var typingClass = data.typing ? 'typing' : '';
-    var $messageDiv = $('<li class="message"/>')
-      .data('username', data.username)
-      .addClass(typingClass)
-      .append($usernameDiv, $messageBodyDiv);
+		var typingClass = data.typing ? 'typing' : '';
+		var $messageDiv = $('<li class="message"/>')
+		  .data('username', data.username)
+		  .addClass(typingClass)
+		  .append($usernameDiv, $messageBodyDiv);
 
-    addMessageElement($messageDiv, options);
+		addMessageElement($messageDiv, options);
+	}
   }
   // Adds the visual chat typing message
   function addChatTyping (data) 
@@ -163,6 +177,7 @@ $(function() {
     log(data.username + ' left');
     addParticipantsMessage(data);
     removeChatTyping(data);
+	gameAuth(false); 
   });
   /****************************************************************/
   /** Socket functions  */
