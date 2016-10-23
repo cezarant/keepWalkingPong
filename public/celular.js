@@ -153,12 +153,9 @@ $(function()
       $currentInput.focus();
     }
     // When the client hits ENTER on their keyboard
-    if (event.which === 13){
-		username = $usernameInput.val(); 
-      if (username){
-        sendMessage();
-      } else{
-        socket.emit('new message', username);
+    if (event.which === 13)
+	{
+		username = $usernameInput.val();       
 		setUsername();		
       }
     }
