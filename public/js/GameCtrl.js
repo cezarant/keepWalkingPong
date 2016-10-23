@@ -87,7 +87,7 @@
 		
 		socket.on('subir', function (data)
 		{
-			if(data.username === player1)
+			if(data.message === player1)
 			{ 
 				if (ctrl.game.player1.paddle.top > 0)
 				{
@@ -107,7 +107,7 @@
 		
 		socket.on('descer', function (data)
 		{
-		    if(data.username === player1)
+		    if(data.message === player1)
 			{			
 				if (ctrl.game.player1.paddle.top < top_max)
 				{
