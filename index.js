@@ -48,7 +48,15 @@ io.on('connection', function (socket)
     socket.broadcast.emit('subir', {
       username: socket.username
     });
-  });  
+  });
+
+  socket.on('auth', function ()
+  {
+    socket.broadcast.emit('auth', {
+      username: socket.username
+    });
+  });	
+  
   
   socket.on('descer', function ()
   {
