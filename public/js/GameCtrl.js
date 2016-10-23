@@ -34,15 +34,7 @@
 				right: 50
 			}
 		};
-
-		//var socket = io('https://pongkeepwalking.herokuapp.com/');
-		//var socket = io('http://localhost:8001/');
-		//socket.on('message', function (data) {
-		//	console.log(data);
-		//});
-
 		PongGame.deltaTime = 500;
-
 		PongGame.canvas = {
 			width: 98.8,
 			height: 97.5
@@ -75,6 +67,8 @@
 			height: 10
 		};
 
+		var numUsers = 0;
+		var gameAuth = false;  
 		var socket = io('https://pongkeepwalking.herokuapp.com/');
 		socket.on('subir', function (data)
 		{
@@ -96,43 +90,71 @@
 			}
 		});
 		
-		
-		$interval(function() {
-			PongGame.UpdateBallPosition(ctrl.game.player1.paddle, ctrl.game.player2.paddle);
-
-			if ((PongGame.ball.pos.x < 0) || (PongGame.ball.pos.x > PongGame.canvas.width))
+		socket.on('add user', function (username)
+		{
+			if ((addedUser) || (numUsers === 2)) return;
+			// we store the username in the socket session for this client
+			socket.username = username;
+			++numUsers;			 
+			if(numUsers === 2)
+				gameAuth = true; 	
+			
+			alert(numUsers); 
+			 
+			//addedUser = true;
+			/*socket.emit('login', 
 			{
-				if (PongGame.ball.pos.x < PongGame.canvas.width)
+			  numUsers: numUsers
+			});
+			// echo globally (all clients) that a person has connected
+			socket.broadcast.emit('user joined', 
+			{
+			  username: socket.username,
+			  numUsers: numUsers
+			});*/
+		});
+		
+		
+		
+		$interval(function()
+		{
+			if(gameAuth)
+			{ 
+			
+				PongGame.UpdateBallPosition(ctrl.game.player1.paddle, ctrl.game.player2.paddle);
+
+				if ((PongGame.ball.pos.x < 0) || (PongGame.ball.pos.x > PongGame.canvas.width))
 				{
-					ctrl.game.player1.score += 1;
+					if (PongGame.ball.pos.x < PongGame.canvas.width)
+					{
+						ctrl.game.player1.score += 1;
 
-					PongGame.ball.pos.x = PongGame.canvas.width;
-					PongGame.ball.pos.y = ctrl.game.player1.paddle.top;
+						PongGame.ball.pos.x = PongGame.canvas.width;
+						PongGame.ball.pos.y = ctrl.game.player1.paddle.top;
 
-					if (PongGame.ball.speed.x > 0)
-						PongGame.ball.speed.x *= -1;
+						if (PongGame.ball.speed.x > 0)
+							PongGame.ball.speed.x *= -1;
+					}
+					else
+					{
+						ctrl.game.player2.score += 1;
+						PongGame.ball.pos.x = 0;
+						PongGame.ball.pos.y = ctrl.game.player2.paddle.top;
+
+						if (PongGame.ball.speed.x < 0)
+							PongGame.ball.speed.x *= -1;
+					}
+
+					ctrl.game.player2.paddle.top = 45;
 				}
-				else
-				{
-					ctrl.game.player2.score += 1;
-					PongGame.ball.pos.x = 0;
-					PongGame.ball.pos.y = ctrl.game.player2.paddle.top;
-
-					if (PongGame.ball.speed.x < 0)
-						PongGame.ball.speed.x *= -1;
-				}
-
-				ctrl.game.player2.paddle.top = 45;
+				// top do player2
+				// PongGame.ball.pos.x
+				// PongGame.ball.pos.y
+				// player1.score
+				// player2.score
+				ctrl.game.ball.right = PongGame.ball.pos.x;
+				ctrl.game.ball.top = PongGame.ball.pos.y;
 			}
-
-			// top do player2
-			// PongGame.ball.pos.x
-			// PongGame.ball.pos.y
-			// player1.score
-			// player2.score
-
-			ctrl.game.ball.right = PongGame.ball.pos.x;
-			ctrl.game.ball.top = PongGame.ball.pos.y;
 		}, 100);
 
 		$scope.$on('ArrowUp', function(event, args) {
@@ -141,20 +163,18 @@
 				ctrl.game.player1.paddle.top -= max_movements;
 				if (ctrl.game.player1.paddle.top < 0)
 					ctrl.game.player1.paddle.top = 0;
-
-				//socket.emit('subir');
+				
 				console.log('enviado');
 			}
 		});
 
-		$scope.$on('ArrowDown', function(event, args) {
+		$scope.$on('ArrowDown', function(event, args)
+		{
 			if (ctrl.game.player1.paddle.top < top_max)
 			{
 				ctrl.game.player1.paddle.top += max_movements;
 				if ((ctrl.game.player1.paddle.top + ctrl.game.player1.paddle.height) > PongGame.canvas.height)
-					ctrl.game.player1.paddle.top = PongGame.canvas.height - ctrl.game.player1.paddle.height + 2.5;
-
-				//socket.emit('my other event', { my: 'data' });
+					ctrl.game.player1.paddle.top = PongGame.canvas.height - ctrl.game.player1.paddle.height + 2.5;				
 			}
 		});
 	}
