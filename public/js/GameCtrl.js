@@ -75,6 +75,13 @@
 			height: 10
 		};
 
+		var socket = io();
+		socket.on('login', function (data)
+		{
+		    alert('Usuário conectado'); 
+		});
+		
+		
 		$interval(function() {
 			PongGame.UpdateBallPosition(ctrl.game.player1.paddle, ctrl.game.player2.paddle);
 
