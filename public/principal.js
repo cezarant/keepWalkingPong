@@ -41,7 +41,8 @@ $(function() {
 	$loginPage.fadeOut();
   }  
   // Sets the client's username
-  function setUsername(){
+  function setUsername()
+  {
     username = cleanInput($usernameInput.val().trim());    
     if (username) 
 	{
