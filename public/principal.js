@@ -159,13 +159,14 @@ $(function() {
    
   socket.on('login', function (data)
   {
-    connected = true;
+    alert('Chegou usuário'); 
+	connected = true;
     // Display the welcome message
-    var message = "Welcome to Socket.IO Chat – ";
+    /*var message = "Welcome to Socket.IO Chat – ";
     log(message, {
       prepend: true
     });
-    addParticipantsMessage(data);
+    addParticipantsMessage(data);*/
   });
 
   // Whenever the server emits 'new message', update the chat body
@@ -191,14 +192,12 @@ $(function() {
   /** Socket functions  */
   socket.on('subir', function (data)
   {
-     var $chatPage = $('.chat.page');
-	 $chatPage.css("background-color","red");	  
+     alert('Subir!'); 
 	 // alteraStatus(data,'Subindo barra'); 
   });  
   socket.on('descer', function (data)
   {
-    var $chatPage = $('.chat.page');
-	 $chatPage.css("background-color","white");	  
+	  alert('Descer!');     
 	//alteraStatus(data,'Descendo barra'); 
   });
   function alteraStatus(data,statusOfBar) 
