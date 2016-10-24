@@ -92,8 +92,9 @@
 			}  			
 		});
 		
-		socket.on('subir', function (data)
+		socket.on('up', function (data)
 		{
+			console.log('up');
 			if(data.message === player1)
 			{ 
 				if (ctrl.game.player1.paddle.top > 0)
@@ -119,8 +120,9 @@
 			}			
 		});
 		
-		socket.on('descer', function (data)
+		socket.on('down', function (data)
 		{
+			console.log('down'); 
 		    if(data.message === player1)
 			{			
 				if (ctrl.game.player1.paddle.top < top_max)
