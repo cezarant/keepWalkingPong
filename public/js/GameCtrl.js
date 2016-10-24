@@ -129,7 +129,7 @@
 					if ((ctrl.game.player2.paddle.top + ctrl.game.player2.paddle.height) > PongGame.canvas.height)
 						ctrl.game.player2.paddle.top = PongGame.canvas.height - ctrl.game.player2.paddle.height + 2.5;				
 				}				
-			} 	
+			} 	 
 		});
 			
 		
