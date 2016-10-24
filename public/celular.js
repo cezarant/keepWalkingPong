@@ -134,9 +134,8 @@ $(function()
   }
   /** Function to down the bar */
   function descer()
-  {
-	 //if (connected) 	        
-        socket.emit('descer',username);
+  {	        
+    socket.emit('descer',username);
   }  
   /*****************************************************************************************/    
   function getTypingMessages (data) 
