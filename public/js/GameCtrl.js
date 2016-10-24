@@ -104,7 +104,7 @@
 				}		
 			}			
 		});
-		
+		 
 		socket.on('descer', function (data)
 		{
 		    if(data.message === player1)
