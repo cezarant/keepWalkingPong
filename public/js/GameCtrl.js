@@ -73,6 +73,12 @@
 		var contPlayer = 0;  		
 		var socket = io('https://pongkeepwalking.herokuapp.com/');
 		
+		socket.on('error', function(data)
+		{
+			alert('Erro ao tentar se conectar com o servidor'); 
+			console.log('' + erro ao tentar se conectar data); 
+		});
+		
 		socket.on('new message', function (data)
 		{
 		    if(contPlayer === 1)
