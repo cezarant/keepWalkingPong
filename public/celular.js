@@ -211,7 +211,7 @@ $(function()
   
   socket.on('descer', function (data)
   {
-    alteraStatus(data,'Descendo barra'); 
+    socket.emit('new message', message);
   });
   function alteraStatus(data,statusOfBar) 
   {    
