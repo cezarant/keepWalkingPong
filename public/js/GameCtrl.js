@@ -71,7 +71,7 @@
 		var player1 = ""; 
 		var player2 = ""; 
 		var contPlayer = 0;  		
-		/*var socket = io('https://pongkeepwalking.herokuapp.com/');
+		var socket = io('https://pongkeepwalking.herokuapp.com/');
 		
 		socket.on('error', function(data)
 		{
@@ -135,7 +135,7 @@
 						ctrl.game.player2.paddle.top = PongGame.canvas.height - ctrl.game.player2.paddle.height + 2.5;				
 				}				
 			} 	 
-		});*/
+		});
 			
 		
 		$interval(function()
