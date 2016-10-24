@@ -43,28 +43,26 @@ io.on('connection', function (socket)
     });
   });
 
-  socket.on('subir', function (data)
+  socket.on('up', function (data)
   {
-    socket.broadcast.emit('subir',      
+    socket.broadcast.emit('up',      
 	{
       username: socket.username,
       message: data
     });  
   });
 
-   
-  socket.on('descer', function ()
+  socket.on('down', function (data)
   {
-    socket.broadcast.emit('descer',      
+    socket.broadcast.emit('down',      
 	{
       username: socket.username,
       message: data
-    });
-  });  
-    
-
+    });  
+  });
   // when the user disconnects.. perform this
-  socket.on('disconnect', function () {
+  socket.on('disconnect',function() 
+  {
     if (addedUser) {
       --numUsers;
 

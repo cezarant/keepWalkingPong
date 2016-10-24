@@ -119,12 +119,7 @@ $(function()
   }
   /** Up and Down */
   /*****************************************************************************************/
-  /** Function to Up the bar */
-  function auth(username)
-  {
-	  socket.emit('auth',username);
-  }
-
+  /** Function to Up the bar */  
   function subir()
   {		
      socket.emit('subir',username);
@@ -200,21 +195,5 @@ $(function()
     log(data.username + ' left');
     addParticipantsMessage(data);
     removeChatTyping(data);
-  });
-  /****************************************************************/
-  /** Socket functions  */
-  socket.on('subir', function (data)
-  {
-     alteraStatus(data,'Subindo barra'); 
-  });
-  
-  socket.on('descer', function (data)
-  {
-    alteraStatus(data,'Subindo barra');
-  });
-  function alteraStatus(data,statusOfBar) 
-  {    
-    data.message = statusOfBar;
-    addChatMessage(data);
-  }  
+  });  
 });
