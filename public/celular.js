@@ -122,12 +122,12 @@ $(function()
   /** Function to Up the bar */  
   function subir()
   {		
-     socket.emit('subir',username);
+     socket.emit('up',username);
   }
   /** Function to down the bar */
   function descer()
   {	        
-    socket.emit('subir',username);
+    socket.emit('down',username);
   }  
   /*****************************************************************************************/    
   function getTypingMessages (data) 
