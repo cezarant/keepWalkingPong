@@ -84,9 +84,7 @@ $(function()
   }
   // Adds the visual chat typing message
   function addChatTyping (data) 
-  {
-    data.typing = true;
-    data.message = 'is typing';
+  {    
     addChatMessage(data);
   }
   // Removes the visual chat typing message

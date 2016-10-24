@@ -80,7 +80,9 @@
 		
 		socket.on('new message', function (data)
 		{
-		    if(contPlayer === 1)
+		    console.log('new mensagem');
+			
+			if(contPlayer === 1)
 			{
 				player2 = data.message; 
 				gameAuth = true; 				
