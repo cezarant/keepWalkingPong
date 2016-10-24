@@ -52,14 +52,7 @@ io.on('connection', function (socket)
     });  
   });
 
-  socket.on('auth', function ()
-  {
-    socket.broadcast.emit('auth', {
-      username: socket.username
-    });
-  });	
-  
-  
+   
   socket.on('descer', function ()
   {
     socket.broadcast.emit('descer',      

@@ -75,8 +75,7 @@
 		
 		socket.on('error', function(data)
 		{
-			alert('Erro ao tentar se conectar com o servidor'); 
-			console.log('' + erro ao tentar se conectar data); 
+			alert('Erro ao tentar se conectar com o servidor'); 			
 		});
 		
 		socket.on('new message', function (data)
