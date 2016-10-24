@@ -94,7 +94,14 @@
 					ctrl.game.player1.paddle.top -= max_movements;
 					if (ctrl.game.player1.paddle.top < 0)
 						ctrl.game.player1.paddle.top = 0;
-				}
+				}else{
+					if (ctrl.game.player1.paddle.top < top_max)
+					{
+						ctrl.game.player1.paddle.top += max_movements;
+						if ((ctrl.game.player1.paddle.top + ctrl.game.player1.paddle.height) > PongGame.canvas.height)
+							ctrl.game.player1.paddle.top = PongGame.canvas.height - ctrl.game.player1.paddle.height + 2.5;				
+					}					
+				} 
 			}else{ 
 				if (ctrl.game.player2.paddle.top > 0)
 				{
@@ -104,7 +111,7 @@
 				}		
 			}			
 		});
-		 
+		
 		socket.on('descer', function (data)
 		{
 		    if(data.message === player1)
