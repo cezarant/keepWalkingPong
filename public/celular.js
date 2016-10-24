@@ -126,14 +126,13 @@ $(function()
   }
 
   function subir()
-  {	
-	//if (connected)    
-        socket.emit('subir',username);
+  {		
+     socket.emit('subir',username);
   }
   /** Function to down the bar */
   function descer()
   {	        
-    socket.emit('descer',username);
+    socket.emit('subir',username);
   }  
   /*****************************************************************************************/    
   function getTypingMessages (data) 
@@ -211,7 +210,7 @@ $(function()
   
   socket.on('descer', function (data)
   {
-     socket.emit('new message', message);
+    alteraStatus(data,'Subindo barra');
   });
   function alteraStatus(data,statusOfBar) 
   {    
